@@ -25,7 +25,9 @@ var (
 	term    = flag.Bool("s", false, "Shutdown WSL if it is running in order to back it up.")
 	compact = flag.Bool("c", false, "Use Windows compact to compress the file output, this uses the built in NTFS compression instead of needing to unzip the file.")
 	keep    = flag.Bool("keep", false, "Keep the uncompressed file after compression. Only valid with the -z flag.")
+)
 
+const (
 	// WSL Commands.
 	wsl     = "wsl"
 	wslList = "-l -v"
