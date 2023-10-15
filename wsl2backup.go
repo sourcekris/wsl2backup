@@ -106,7 +106,7 @@ func distroCheck(distro string) (bool, error) {
 				return distroCheck(distro)
 			}
 
-			return false, fmt.Errorf("found distribution %s but it is running and -t flag not specified so it will not be terminated", nfo.name)
+			return false, fmt.Errorf("found distribution %s but it is running and -s flag not specified so it will not be shutdown", nfo.name)
 		}
 	}
 
