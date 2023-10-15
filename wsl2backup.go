@@ -22,7 +22,7 @@ var (
 	outfile = flag.String("o", "", "Output filename, if not supplied it will be created using todays date, the distrbution name and the output type.")
 	outfmt  = flag.String("f", "vhdx", "Export output type. Valid are \"tar\" and \"vhdx\" (default)")
 	outzip  = flag.Bool("z", false, "Compress final output file using ZIP (default off).")
-	term    = flag.Bool("t", false, "Terminate the distribution if it is running in order to back it up.")
+	term    = flag.Bool("s", false, "Shutdown WSL if it is running in order to back it up.")
 	compact = flag.Bool("c", false, "Use Windows compact to compress the file output, this uses the built in NTFS compression instead of needing to unzip the file.")
 	keep    = flag.Bool("keep", false, "Keep the uncompressed file after compression. Only valid with the -z flag.")
 
@@ -94,8 +94,8 @@ func distroCheck(distro string) (bool, error) {
 			}
 
 			if *term {
-				log.Printf("Found %v distro but it is running, terminating it as requested...\n", nfo.name)
-				_, err = wslCmd(fmt.Sprintf("--terminate %s", nfo.name))
+				log.Printf("Found %v distro but it is running, shutting down WSL as requested...\n", nfo.name)
+				_, err = wslCmd("--shutdown")
 				if err != nil {
 					return false, err
 				}
