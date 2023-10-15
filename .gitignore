@@ -1,1 +1,4 @@
 wsl2backup.exe
+*.vhdx
+*.zip
+*.tar
